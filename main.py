@@ -1,6 +1,7 @@
 from stats import get_book_text
 from stats import count_chars
 from stats import count_words
+from stats import sort_char_counts
 
 def main():
     # Get the text from the book
@@ -9,12 +10,23 @@ def main():
     
     # Get word count
     word_count = count_words(text)
-    print(f"Word count: {word_count}")
+
     
     # Get character count
     char_counts = count_chars(text)
-    print(f"Character counts: {char_counts}")
-    # You might want to format this output more nicely
+
+    print ("============ BOOKBOT ============")
+    print (f"Analyzing book found at {book_path}...")
+    print ("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+
+    # Print sorted list
+    sorted_chars = sort_char_counts(char_counts)
+    print("--------- Character Count -------")
+    for char_dict in sorted_chars:
+        if char_dict["char"].isalpha():
+            print(f"{char_dict['char']}: {char_dict['count']}")
+    print("============= END ===============")
 
 if __name__ == "__main__":
     main()
